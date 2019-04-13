@@ -31,3 +31,7 @@ Postgres 11
 Angular CLI 7.3.8  
 Node 10.15.3  
 Angular Material
+
+### Система управления проектами
+
+Wrike
