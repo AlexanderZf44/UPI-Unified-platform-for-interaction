@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core'
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
+//todo change this service with new auth system
 @Injectable()
 export class AuthService {
 
