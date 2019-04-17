@@ -1,45 +1,68 @@
-package ru.technology.upi.service.api;
+package ru.technology.upi.service.impl.user;
 
+import org.springframework.stereotype.Service;
 import ru.technology.upi.domain.dto.UserDTO;
+import ru.technology.upi.service.api.user.UserService;
 
 import java.util.List;
 
 /**
- * Интерфейс сервиса взаимодействия с пользовательской ифнормацией.
+ * Реализация сервиса взаимодействия с пользовательской ифнормацией.
  */
-public interface UserService {
+@Service(value = "userService")
+public class UserServiceImpl implements UserService {
 
     /**
      * Метод сохранения нового пользователя в системе.
+     *
      * @param user новый пользователей.
      * @return созданный пользователь.
      */
-    UserDTO save(UserDTO user);
+    @Override
+    public UserDTO save(UserDTO user) {
+        return null;
+    }
 
     /**
      * Метод нахождения всех пользователей системы.
+     *
      * @return список пользователей системы.
      */
-    List<UserDTO> findAll();
+    @Override
+    public List<UserDTO> findAll() {
+        return null;
+    }
 
     /**
      * Метод удаления пользователя системы по его ID.
+     *
      * @param id ID пользователя
      * @return флаг успешного удаления пользователя.
      */
-    boolean delete(long id);
+    @Override
+    public boolean delete(long id) {
+        return false;
+    }
 
     /**
      * Метод для нахождения пользователя по его логину в системе.
+     *
      * @param userName логин пользователя в системе.
      * @return DTO пользователя.
      */
-    UserDTO find(String userName);
+    @Override
+    public UserDTO find(String userName) {
+        return null;
+    }
 
     /**
      * Метод для нахождения пользователя по его ID в системе.
+     *
      * @param id ID пользователя в системе.
      * @return DTO пользователя.
      */
-    UserDTO find(Long id);
+    @Override
+    public UserDTO find(Long id) {
+        return null;
+    }
 }

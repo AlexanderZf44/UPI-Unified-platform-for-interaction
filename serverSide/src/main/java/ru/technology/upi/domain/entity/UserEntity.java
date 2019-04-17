@@ -2,7 +2,14 @@ package ru.technology.upi.domain.entity;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.util.Set;
 
 /**
@@ -32,7 +39,7 @@ public class UserEntity extends BaseEntity {
      * Логин пользователя в системе.
      */
     @Column
-    private String userName;
+    private String username;
     /**
      * Пароль пользователя в системе.
      */

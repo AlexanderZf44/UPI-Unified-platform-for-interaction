@@ -2,9 +2,13 @@ package ru.technology.upi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import ru.technology.upi.domain.dto.UserDTO;
-import ru.technology.upi.service.api.UserService;
+import ru.technology.upi.service.api.user.UserService;
 
 import java.util.List;
 
@@ -22,6 +26,7 @@ public class UserController {
     /**
      * Метод для получения списка пользователей,
      * доступный только для администратора системы.
+     *
      * @return список пользователей системы.
      */
     @PreAuthorize("hasRole('ADMIN')")
@@ -32,6 +37,7 @@ public class UserController {
 
     /**
      * Метод регистрации нового пользователя.
+     *
      * @param user новый пользователь системы.
      * @return созданный пользователь.
      */
