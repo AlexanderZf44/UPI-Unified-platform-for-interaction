@@ -1,12 +1,9 @@
 package ru.technology.upi.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.technology.upi.domain.dto.UserDTO;
 import ru.technology.upi.service.api.user.UserService;
 
@@ -15,6 +12,7 @@ import java.util.List;
 /**
  * Контроллер, необходимый для взаимодейсвия с пользовательской информацией.
  */
+@Slf4j
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController()
 @RequestMapping("/user")
@@ -30,7 +28,7 @@ public class UserController {
      * @return список пользователей системы.
      */
     @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @GetMapping(value = "/all")
     public List<UserDTO> listOfUsers() {
         return userService.findAll();
     }
@@ -41,8 +39,21 @@ public class UserController {
      * @param user новый пользователь системы.
      * @return созданный пользователь.
      */
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    @PostMapping(value = "/register")
     public UserDTO saveUser(@RequestBody UserDTO user) {
+        log.info("New user register " + user.getUserName());
         return userService.save(user);
+    }
+
+    /**
+     * Метод для обозначения авторизации пользователя.
+     *
+     * @param user пользователь
+     * @return пользователь
+     */
+    @PostMapping(value = "/login")
+    public UserDTO loginUser(UserDTO user) {
+        log.info("Login user " + user.getUserName());
+        return user;
     }
 }

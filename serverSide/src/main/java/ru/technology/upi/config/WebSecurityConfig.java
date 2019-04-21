@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import ru.technology.upi.service.impl.user.security.UserSecurityService;
 
 @Configuration
@@ -19,9 +20,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private ODataBasicAuthenticationEntryPoint oDataBasicAuthenticationEntryPoint;
 
-    //todo optimize user service
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth, UserSecurityService userService) throws Exception {
+    private UserSecurityService userService;
+
+    //todo optimize user service
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
@@ -30,14 +34,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/auth/*", "/user/signup").permitAll()
+                .antMatchers("/user/login", "/user/register", "/logout").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .httpBasic().authenticationEntryPoint(oDataBasicAuthenticationEntryPoint)
+                .logout().permitAll()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "POST"))
                 .and()
-                .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
+                .httpBasic().authenticationEntryPoint(oDataBasicAuthenticationEntryPoint)
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
