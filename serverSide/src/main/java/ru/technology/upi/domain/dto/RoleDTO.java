@@ -1,11 +1,13 @@
 package ru.technology.upi.domain.dto;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * DTO ролей пользователя в системе.
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class RoleDTO extends BaseDTO {
 
     /**

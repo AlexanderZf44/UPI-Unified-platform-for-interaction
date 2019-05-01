@@ -1,20 +1,15 @@
 package ru.technology.upi.domain.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 /**
  * Сущность для отображения пользователя в БД.
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @Table(schema = "upism", name = "user")

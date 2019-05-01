@@ -1,6 +1,7 @@
 package ru.technology.upi.domain.dto;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import java.util.Set;
  * DTO пользователя системы.
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class UserDTO extends BaseDTO {
 
     /**
