@@ -1,0 +1,20 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="apermyakov">
+        <comment>Add FK for user_role many to many table</comment>
+        <addForeignKeyConstraint baseTableSchemaName="upism" baseTableName="user_role"
+                                 baseColumnNames="user_id" constraintName="user_fk"
+                                 referencedTableSchemaName="upism" referencedTableName="user"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableSchemaName="upism" baseTableName="user_role"
+                                 baseColumnNames="role_id" constraintName="role_fk"
+                                 referencedTableSchemaName="upism" referencedTableName="role"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
