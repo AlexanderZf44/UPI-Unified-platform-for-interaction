@@ -1,0 +1,74 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="apermyakov">
+        <comment>Init user table</comment>
+        <createTable tableName="user" schemaName="upism"
+                     remarks="Table for user entities">
+            <column name="id" type="int4" autoIncrement="true"
+                    remarks="User id">
+                <constraints nullable="false" unique="true"
+                             primaryKey="true" primaryKeyName="userId"/>
+            </column>
+            <column name="firstName" type="varchar(255)"
+                    remarks="User first name">
+                <constraints nullable="false"/>
+            </column>
+            <column name="middleName" type="varchar(255)"
+                    remarks="User middle name. Can be empty">
+                <constraints nullable="true"/>
+            </column>
+            <column name="lastName" type="varchar(255)"
+                    remarks="User last name">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="varchar(255)"
+                    remarks="User username into app">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar(255)"
+                    remarks="User password into app">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="apermyakov">
+        <comment>Init user roles table</comment>
+        <createTable tableName="role" schemaName="upism"
+                     remarks="Table for user roles">
+            <column name="id" type="int4" autoIncrement="true"
+                    remarks="Role id">
+                <constraints nullable="false" unique="true"
+                             primaryKey="true" primaryKeyName="roleId"/>
+            </column>
+            <column name="name" type="varchar(255)"
+                    remarks="Name of user role">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="varchar(500)"
+                    remarks="Description of user role">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="apermyakov">
+        <comment>Init table for create many to many user and role attitude</comment>
+        <createTable tableName="user_role" schemaName="upism"
+                     remarks="Table for user and role many to many attitude">
+            <column name="user_id" type="int4"
+                    remarks="Primary key for user">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="int4"
+                    remarks="Primary key for role">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

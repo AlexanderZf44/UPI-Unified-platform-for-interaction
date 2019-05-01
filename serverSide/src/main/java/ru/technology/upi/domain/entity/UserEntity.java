@@ -47,5 +47,5 @@ public class UserEntity extends BaseEntity {
     @JoinTable(schema = "upism", name = "user_role",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
-    private Set roles;
+    private Set<RoleEntity> roles;
 }
