@@ -23,7 +23,8 @@
         mat-button
         class="shadow-content"
         aria-label="Button to log in"
-        [disabled]="loginForm.invalid">
+        [disabled]="loginForm.invalid"
+        (click)="logIn()">
         <mat-icon aria-label="Log in button icon">arrow_forward</mat-icon>
         <span>Войти</span>
       </button>

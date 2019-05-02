@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'clientSide';
+  title = 'UPI';
+  static API_URL="http://localhost:8080";
 }
