@@ -18,17 +18,17 @@ public class UserEntity extends BaseEntity {
     /**
      * Имя пользователя.
      */
-    @Column
+    @Column(name = "first_name")
     private String firstName;
     /**
      * Отчество пользователя.
      */
-    @Column
+    @Column(name = "middle_name")
     private String middleName;
     /**
      * Фамилия пользователя.
      */
-    @Column
+    @Column(name = "last_name")
     private String lastName;
     /**
      * Логин пользователя в системе.

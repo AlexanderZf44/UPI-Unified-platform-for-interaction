@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.technology.upi.domain.dto.UserDTO;
 import ru.technology.upi.service.api.user.UserService;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Контроллер, необходимый для взаимодейсвия с пользовательской информацией.
@@ -52,8 +54,9 @@ public class UserController {
      * @return пользователь
      */
     @PostMapping(value = "/login")
-    public UserDTO loginUser(UserDTO user) {
-        log.info("Login user " + user.getUserName());
+    public Principal loginUser(Principal user) {
+        Optional.ofNullable(user)
+                .ifPresent(principal -> log.info("Login user " + principal.getName()));
         return user;
     }
 }

@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserDTO save(UserDTO user) {
+        //todo add bcrypt encode for password
         return null;
     }
 

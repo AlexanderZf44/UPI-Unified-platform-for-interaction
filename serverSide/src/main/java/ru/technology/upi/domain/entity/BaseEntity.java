@@ -2,17 +2,15 @@ package ru.technology.upi.domain.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Базовая сущность для отображения в БД.
  */
 @Data
-@Entity
-public abstract class BaseEntity {
+@MappedSuperclass
+public abstract class BaseEntity implements Serializable {
 
     /**
      * ID сущности.

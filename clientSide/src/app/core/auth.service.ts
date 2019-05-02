@@ -14,16 +14,15 @@ export class AuthService {
 
     const base64Credential = btoa(username + ':' + password);
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Basic ' + base64Credential
-    });
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('Authorization', 'Basic ' + base64Credential);
 
     const httpOptions = {
       headers: headers
     };
 
-    return this.http.post(AppComponent.API_URL + "/user/login", httpOptions)
+    return this.http.post(AppComponent.API_URL + "/user/login", {}, httpOptions)
       .pipe(
         tap(
           data => localStorage.setItem('currentUser', data.toString())

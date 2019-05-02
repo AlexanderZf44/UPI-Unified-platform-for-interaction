@@ -13,9 +13,6 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {
   }
 
-  username: string;
-  password: string;
-
   usernameFromControl = new FormControl('', [
     Validators.required
   ]);
@@ -30,7 +27,7 @@ export class LoginComponent {
   });
 
   public logIn() {
-    this.authService.logIn(this.username, this.password)
+    this.authService.logIn(this.loginForm.value.username, this.loginForm.value.password)
       .subscribe(
         data => this.router.navigate(['/main'])
       )

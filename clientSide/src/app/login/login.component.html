@@ -6,13 +6,12 @@
   <mat-card-content>
     <form [formGroup]="loginForm" class="login-detail">
       <mat-form-field class="input-full-width">
-        <input matInput placeholder="Логин пользователя" name="username" [formControl]="usernameFromControl"
-               [ngModel]="username" required>
+        <input matInput placeholder="Логин пользователя" name="username" [formControl]="usernameFromControl" required>
         <mat-error *ngIf="usernameFromControl.hasError('required')">Логин пользователя обязателен</mat-error>
       </mat-form-field>
       <mat-form-field class="input-full-width">
         <input matInput placeholder="Пароль пользователя" type="password" name="password"
-               [formControl]="passwordFormControl" [ngModel]="password" required>
+               [formControl]="passwordFormControl" required>
         <mat-error *ngIf="passwordFormControl.hasError('required')">Пароль пользователя обязателен</mat-error>
       </mat-form-field>
     </form>

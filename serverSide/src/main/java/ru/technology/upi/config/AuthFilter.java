@@ -38,9 +38,9 @@ public class AuthFilter extends GenericFilterBean {
 
             UserDetails user;
             try {
-                user = userService.loadUserById(userId);
-            } catch (UserNotFoundException e) {
                 user = userService.loadUserByUsername(userId);
+            } catch (UserNotFoundException e) {
+                user = userService.loadUserById(userId);
             }
             Authentication auth = new UsernamePasswordAuthenticationToken(user.getUsername(), null, user.getAuthorities());
             securityContext.setAuthentication(auth);
