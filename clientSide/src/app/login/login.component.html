@@ -1,24 +1,32 @@
-<mat-card class="login-card">
-  <mat-card-header>
-    <mat-card-title>Авторизация в системе</mat-card-title>
-    <mat-card-subtitle>Для продолжения работы введите свои данные</mat-card-subtitle>
+<mat-card class="login-card shadow-content">
+  <mat-card-header class="flex-center-content">
+    <mat-card-title class="flex-center-content">Авторизация в системе</mat-card-title>
+    <mat-card-subtitle class="flex-center-content">Для продолжения работы введите свои данные</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <form class="login-detail">
-      <mat-form-field>
-        <input matInput placeholder="Логин пользователя" name="username" required>
+    <form [formGroup]="loginForm" class="login-detail">
+      <mat-form-field class="input-full-width">
+        <input matInput placeholder="Логин пользователя" name="username" [formControl]="usernameFromControl"
+               [ngModel]="username" required>
+        <mat-error *ngIf="usernameFromControl.hasError('required')">Логин пользователя обязателен</mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Пароль пользователя" type="password" name="password" required>
+      <mat-form-field class="input-full-width">
+        <input matInput placeholder="Пароль пользователя" type="password" name="password"
+               [formControl]="passwordFormControl" [ngModel]="password" required>
+        <mat-error *ngIf="passwordFormControl.hasError('required')">Пароль пользователя обязателен</mat-error>
       </mat-form-field>
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button
-      type="button"
-      aria-label="Button to log in">
-      <mat-icon aria-label="Log in button icon">arrow_forward</mat-icon>
-      <span>Log In</span>
-    </button>
+    <form class="flex-center-content">
+      <button
+        mat-button
+        class="shadow-content"
+        aria-label="Button to log in"
+        [disabled]="loginForm.invalid">
+        <mat-icon aria-label="Log in button icon">arrow_forward</mat-icon>
+        <span>Войти</span>
+      </button>
+    </form>
   </mat-card-actions>
 </mat-card>

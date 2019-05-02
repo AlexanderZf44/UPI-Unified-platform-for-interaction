@@ -1,3 +1,21 @@
 .login-card {
   max-width: 400px;
+  display: block;
+  margin-left:auto;
+  margin-right:auto;
+  vertical-align:middle;
 }
+
+.input-full-width {
+  width: 100%;
+}
+
+.shadow-content {
+  box-shadow: 3px 0 6px rgba(51, 51, 51, 0.43);
+}
+
+.flex-center-content {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
