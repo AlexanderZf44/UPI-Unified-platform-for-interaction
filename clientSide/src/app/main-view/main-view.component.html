@@ -8,9 +8,9 @@
       <span>Меню</span>
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#" routerLink="">Link 3</a>
+      <a mat-list-item href="#">Мой профиль</a>
+      <a mat-list-item href="#">Управление товаром</a>
+      <a mat-list-item href="#" routerLink="">Управление заказами</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -28,15 +28,17 @@
       <span class="login-delimiter"></span>
       <button
         type="button"
-        class="login-icon"
+        class="login-icon flex-center-content"
         aria-label="Redirect to LogIn"
-        mat-icon-button
+        mat-raised-button
+        color="accent"
         [routerLink]="['/login']"
         *ngIf="true">
         <mat-icon aria-label="Redirect login icon">directions_walk</mat-icon>
         <span>LogIn</span>
       </button>
     </mat-toolbar>
-    <!-- Add Content Here -->
+    <h3 mat-label class="flex-center-content">Товар, представленный на платформе</h3>
+    <app-product-table></app-product-table>
   </mat-sidenav-content>
 </mat-sidenav-container>

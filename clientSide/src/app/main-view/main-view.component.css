@@ -24,5 +24,13 @@
 .login-icon {
   width: 80px;
   height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.flex-center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

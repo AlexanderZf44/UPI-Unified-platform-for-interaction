@@ -48,12 +48,14 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { ProductTableComponent } from './product-table/product-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MainViewComponent
+    MainViewComponent,
+    ProductTableComponent
   ],
   imports: [
     BrowserModule,

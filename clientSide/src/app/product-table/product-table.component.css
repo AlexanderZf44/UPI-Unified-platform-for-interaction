@@ -1,0 +1,12 @@
+.full-width {
+  width: 100%;
+}
+
+.mat-elevation-z8 {
+  margin: 0 10px;
+}
+
+.mat-form-field {
+  margin: 10px 10px;
+  display: flex;
+}
