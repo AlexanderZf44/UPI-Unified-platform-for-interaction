@@ -79,4 +79,18 @@ export class ProductTableComponent implements OnInit {
 
     return categoryName;
   }
+
+  addProductToBasket(productId: number) {
+
+    let productMap = new Map(JSON.parse(localStorage.getItem('basket')));
+
+    if (productMap.has(productId)) {
+      // @ts-ignore
+      productMap.set(productId, productMap.get(productId) + 1);
+    } else {
+      productMap.set(productId, 1);
+    }
+
+    localStorage.setItem('basket', JSON.stringify(Array.from(productMap.entries())));
+  }
 }

@@ -25,7 +25,7 @@ export class AuthService {
     return this.http.post(AppComponent.API_URL + "/user/login", {}, httpOptions)
       .pipe(
         tap(
-          data => localStorage.setItem('currentUser', data.toString())
+          data => localStorage.setItem('currentUser', JSON.stringify(data.toString()))
         )
       )
   }
