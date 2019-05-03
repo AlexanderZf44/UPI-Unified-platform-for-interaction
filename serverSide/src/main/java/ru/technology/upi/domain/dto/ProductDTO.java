@@ -2,9 +2,11 @@ package ru.technology.upi.domain.dto;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 import ru.technology.upi.domain.enums.ProductCategory;
 
 @Data
+@SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 public class ProductDTO extends BaseDTO {
 

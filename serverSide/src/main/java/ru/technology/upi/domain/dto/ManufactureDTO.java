@@ -2,6 +2,7 @@ package ru.technology.upi.domain.dto;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * DTO для производителя электроники.
  */
 @Data
+@SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 public class ManufactureDTO extends BaseDTO {
 
