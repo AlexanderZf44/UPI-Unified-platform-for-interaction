@@ -1,0 +1,37 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="apermyakov">
+        <comment>Init manufacture table</comment>
+        <addColumn schemaName="upism" tableName="user">
+            <column name="email" type="varchar(255)"
+                    remarks="User email">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="varchar(255)"
+                    remarks="User phone">
+                <constraints nullable="true"/>
+            </column>
+            <column name="address" type="varchar(500)"
+                    remarks="User address">
+                <constraints nullable="true"/>
+            </column>
+            <column name="manufacture_id" type="int4"
+                    remarks="Link to manufacture info if exists">
+                <constraints nullable="true" foreignKeyName="manufactureId"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="2" author="apermyakov">
+        <comment>Add FK for manufacture from user</comment>
+        <addForeignKeyConstraint baseTableSchemaName="upism" baseTableName="user"
+                                 baseColumnNames="manufacture_id" constraintName="manufacture_fk"
+                                 referencedTableSchemaName="upism" referencedTableName="manufacture"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

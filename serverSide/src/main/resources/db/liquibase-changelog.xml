@@ -8,5 +8,6 @@
     <include file="changelog/01.05.2019_01_init-upi-user-and-role-tables.xml" relativeToChangelogFile="true"/>
     <include file="changelog/01.05.2019_02_create-fk-for-user-role-many-to-many.xml" relativeToChangelogFile="true"/>
     <include file="changelog/03.05.2019_03_init-product-&amp;-manufacture-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/03.05.2019_04_alter-add-columns-to-user.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
