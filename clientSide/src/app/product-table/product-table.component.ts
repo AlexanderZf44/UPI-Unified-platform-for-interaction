@@ -39,7 +39,7 @@ export class ProductTableComponent implements OnInit {
 
   dataSource = new MatTableDataSource<ProductTableItem>();
 
-  displayedColumns = ['id', 'name', 'category', 'manufacture', 'inStock', 'quantity', 'cost'];
+  displayedColumns = ['id', 'name', 'category', 'manufacture', 'inStock', 'quantity', 'cost', 'basket'];
 
   ngOnInit() {
     this.getAllProducts();

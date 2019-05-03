@@ -50,6 +50,16 @@
       <td mat-cell *matCellDef="let row">{{row.cost}}</td>
     </ng-container>
 
+    <!-- Basket Column -->
+    <ng-container matColumnDef="basket">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>В корзину</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button color="accent">
+          <mat-icon class="upi-icon">move_to_inbox</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
