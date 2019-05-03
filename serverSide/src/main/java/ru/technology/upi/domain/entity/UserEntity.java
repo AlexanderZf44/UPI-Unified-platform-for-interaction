@@ -50,6 +50,13 @@ public class UserEntity extends BaseEntity {
      */
     @Column
     private String password;
+
+    /**
+     * Контактные данные пользователя в системе.
+     */
+    @Embedded
+    private UserContactsEntity userContactsEntity;
+
     /**
      * Список ролей пользователя в системе.
      */
@@ -58,4 +65,11 @@ public class UserEntity extends BaseEntity {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<RoleEntity> roles;
+
+    /**
+     * Данные производителя электроники, если пользователь является производителем.
+     */
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "manufacture_id")
+    private ManufactureEntity manufacture;
 }
