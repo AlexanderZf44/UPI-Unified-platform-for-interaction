@@ -33,9 +33,20 @@
         mat-raised-button
         color="accent"
         [routerLink]="['/login']"
-        *ngIf="true">
-        <mat-icon aria-label="Redirect login icon">directions_walk</mat-icon>
+        *ngIf="!isAuthenticated">
+        <mat-icon aria-label="Redirect login icon">meeting_room</mat-icon>
         <span>Войти</span>
+      </button>
+      <button
+        type="button"
+        class="login-icon flex-center-content"
+        aria-label="Redirect to LogOut"
+        mat-raised-button
+        color="accent"
+        [routerLink]="['/logout']"
+        *ngIf="isAuthenticated">
+        <mat-icon aria-label="Redirect logout icon">no_meeting_room</mat-icon>
+        <span>Выйти</span>
       </button>
     </mat-toolbar>
     <h3 mat-label class="flex-center-content">Товар, представленный на платформе</h3>

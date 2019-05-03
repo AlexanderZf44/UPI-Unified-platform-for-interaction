@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -8,7 +8,8 @@ import { map } from 'rxjs/operators';
   templateUrl: './main-view.component.html',
   styleUrls: ['./main-view.component.css']
 })
-export class MainViewComponent {
+export class MainViewComponent implements OnInit{
+  isAuthenticated: boolean;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -17,4 +18,7 @@ export class MainViewComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
+  ngOnInit(): void {
+    this.isAuthenticated = !!localStorage.getItem('currentUser');
+  }
 }
