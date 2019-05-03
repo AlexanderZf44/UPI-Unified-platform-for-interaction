@@ -2,7 +2,7 @@ package ru.technology.upi.domain.entity;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 /**
@@ -12,10 +12,8 @@ import java.io.Serializable;
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 
-    /**
-     * ID сущности.
+    /*
+     * ID сущности перенесены в свои сущности для sequence генерации.
+     * Класс остается для дальнейшего внедрения версионности.
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 }

@@ -15,6 +15,16 @@ import java.util.Set;
 @Table(schema = "upism", name = "user")
 public class UserEntity extends BaseEntity {
 
+    private static final long serialVersionUID = 151988851799588287L;
+
+    /**
+     * ID сущности.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_gen")
+    @SequenceGenerator(name = "user_id_gen", sequenceName = "user_id_seq", allocationSize = 1)
+    private int id;
+
     /**
      * Имя пользователя.
      */
