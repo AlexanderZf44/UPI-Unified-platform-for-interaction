@@ -10,6 +10,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class RoleDTO extends BaseDTO {
 
+    private static final long serialVersionUID = -5997144296089523348L;
+
     /**
      * Название роли в системе.
      */

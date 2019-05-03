@@ -12,6 +12,8 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 public class UserDTO extends BaseDTO {
 
+    private static final long serialVersionUID = 4571302120147186231L;
+
     /**
      * Имя пользователя.
      */
@@ -32,8 +34,29 @@ public class UserDTO extends BaseDTO {
      * Пароль пользователя в системе.
      */
     private String password;
+
+    /**
+     * Email пользователя системы.
+     */
+    private String email;
+
+    /**
+     * Телефон пользователя системы.
+     */
+    private String phone;
+
+    /**
+     * Адрес пользователя системы.
+     */
+    private String address;
+
     /**
      * Список ролей пользователя.
      */
-    private Set roles;
+    private Set<RoleDTO> roles;
+
+    /**
+     * Данные производителя электроники, если пользователь является производителем.
+     */
+    private ManufactureDTO manufacture;
 }
