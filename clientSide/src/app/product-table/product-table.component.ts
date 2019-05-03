@@ -1,27 +1,29 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {ProductService} from "../services/product.service";
 
-// TODO: Replace this with your own data model type
 export interface ProductTableItem {
   id: number;
   name: string;
-  manufacture: string;
+  category: string;
+  manufacture: ManufactureItem;
+  inStock: boolean;
+  quantity: number;
   cost: number;
 }
 
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: ProductTableItem[] = [
-  {id: 1, name: 'Hydrogen', manufacture: 'Vector', cost: 7100},
-  {id: 2, name: 'Helium', manufacture: 'Vector', cost: 42},
-  {id: 3, name: 'Lithium', manufacture: 'Vector', cost: 83},
-  {id: 4, name: 'Beryllium', manufacture: 'Vector', cost: 1600},
-  {id: 5, name: 'Boron', manufacture: 'Vector', cost: 5300},
-  {id: 6, name: 'Carbon', manufacture: 'Vector', cost: 218},
-  {id: 7, name: 'Nitrogen', manufacture: 'Vector', cost: 428},
-  {id: 8, name: 'Oxygen', manufacture: 'Vector', cost: 12300},
-  {id: 9, name: 'Fluorine', manufacture: 'Vector', cost: 3700},
-  {id: 10, name: 'Neon', manufacture: 'Vector', cost: 2900},
-];
+export interface ManufactureItem {
+  id: number;
+  name: string;
+  approved: boolean;
+  products: unknown;
+  userInfo: unknown;
+}
+
+export enum Category {
+  Component = 'Компоненты',
+  Device = 'Готовые устройства'
+}
 
 @Component({
   selector: 'app-product-table',
@@ -31,14 +33,25 @@ const EXAMPLE_DATA: ProductTableItem[] = [
 export class ProductTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSource: MatTableDataSource<ProductTableItem>;
 
-  displayedColumns = ['id', 'name', 'manufacture', 'cost'];
+  constructor(private productService: ProductService) {
+  }
+
+  dataSource = new MatTableDataSource<ProductTableItem>();
+
+  displayedColumns = ['id', 'name', 'category', 'manufacture', 'inStock', 'quantity', 'cost'];
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(EXAMPLE_DATA);
+    this.getAllProducts();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  getAllProducts() {
+    this.productService.getAllProducts()
+      .subscribe(res => {
+        this.dataSource.data = res as ProductTableItem[];
+      })
   }
 
   applyFilter(filterValue: string) {
@@ -47,5 +60,23 @@ export class ProductTableComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  //Convert category type for correct view into table
+  convertCategoryType(categoryType: string) {
+    let categoryName;
+
+    switch (categoryType) {
+      case "Component":
+        categoryName = Category.Component;
+        break;
+      case "Device":
+        categoryName =  Category.Device;
+        break;
+      default:
+        categoryName =  "";
+    }
+
+    return categoryName;
   }
 }

@@ -17,10 +17,31 @@
       <td mat-cell *matCellDef="let row">{{row.name}}</td>
     </ng-container>
 
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Категория</th>
+      <td mat-cell *matCellDef="let row">{{convertCategoryType(row.category)}}</td>
+    </ng-container>
+
     <!-- Manufacture Column -->
     <ng-container matColumnDef="manufacture">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Производитель</th>
-      <td mat-cell *matCellDef="let row">{{row.manufacture}}</td>
+      <td mat-cell *matCellDef="let row">{{row.manufacture.name}}</td>
+    </ng-container>
+
+    <!-- In stock Column -->
+    <ng-container matColumnDef="inStock">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>В наличии</th>
+      <td mat-cell *matCellDef="let row">
+        <mat-icon class="upi-icon" color="primary" *ngIf="row.inStock">done</mat-icon>
+        <mat-icon class="upi-icon" color="primary" *ngIf="!row.inStock">clear</mat-icon>
+      </td>
+    </ng-container>
+
+    <!-- Quantity Column -->
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Количество</th>
+      <td mat-cell *matCellDef="let row">{{row.quantity}}</td>
     </ng-container>
 
     <!-- Cost Column -->
@@ -34,9 +55,9 @@
   </table>
 
   <mat-paginator #paginator
-      [length]="dataSource.data.length"
-      [pageIndex]="0"
-      [pageSize]="5"
-      [pageSizeOptions]="[2, 5, 10, 25]">
+                 [length]="dataSource.data.length"
+                 [pageIndex]="0"
+                 [pageSize]="5"
+                 [pageSizeOptions]="[2, 5, 10, 25]">
   </mat-paginator>
 </div>
