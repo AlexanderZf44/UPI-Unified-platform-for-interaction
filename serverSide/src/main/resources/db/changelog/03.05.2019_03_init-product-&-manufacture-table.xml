@@ -1,0 +1,84 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="apermyakov">
+        <comment>Init manufacture table</comment>
+        <createTable tableName="manufacture" schemaName="upism"
+                     remarks="Table for manufacture user">
+            <column name="id" type="int4" autoIncrement="true"
+                    remarks="Manufacture id">
+                <constraints nullable="false" unique="true"
+                             primaryKey="true" primaryKeyName="manufactureId"/>
+            </column>
+            <column name="name" type="varchar(255)"
+                    remarks="Name of manufacture">
+                <constraints nullable="false"/>
+            </column>
+            <column name="approved" type="boolean" defaultValueBoolean="false"
+                    remarks="Is manufacture is approved">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="int4"
+                    remarks="Id of main user information">
+                <constraints nullable="false" unique="true"
+                             foreignKeyName="userId"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="apermyakov">
+        <comment>Add FK for manufacture table to user table</comment>
+        <addForeignKeyConstraint baseTableSchemaName="upism" baseTableName="manufacture"
+                                 baseColumnNames="user_id" constraintName="user_fk"
+                                 referencedTableSchemaName="upism" referencedTableName="user"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="3" author="apermyakov">
+        <comment>Init product table</comment>
+        <createTable tableName="product" schemaName="upism"
+                     remarks="Table for manufacture product">
+            <column name="id" type="int4" autoIncrement="true"
+                    remarks="Product id">
+                <constraints nullable="false" unique="true"
+                             primaryKey="true" primaryKeyName="productId"/>
+            </column>
+            <column name="name" type="varchar(255)"
+                    remarks="Name of product">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="varchar(255)"
+                    remarks="Category of product">
+                <constraints nullable="false"/>
+            </column>
+            <column name="manufacture_id" type="int4"
+                    remarks="Id of product manufacture">
+                <constraints nullable="false" foreignKeyName="manufactureId"/>
+            </column>
+            <column name="in_stock" type="boolean" defaultValueBoolean="false"
+                    remarks="In stock flag for product">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="int4" defaultValueNumeric="0"
+                    remarks="Available quantity of product">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cost" type="numeric" defaultValueNumeric="0.0"
+                    remarks="Cost of product">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="apermyakov">
+        <comment>Add FK for product and manufacture</comment>
+        <addForeignKeyConstraint baseTableSchemaName="upism" baseTableName="product"
+                                 baseColumnNames="manufacture_id" constraintName="manufacture_fk"
+                                 referencedTableSchemaName="upism" referencedTableName="manufacture"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
