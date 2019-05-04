@@ -1,0 +1,36 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="!(isHandset$ | async)">
+    <mat-toolbar>
+      <mat-icon class="upi-icon">toc</mat-icon>
+      <span>Меню</span>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item >Открыть корзину</a>
+      <a mat-list-item >Посмотреть список оплаченных товаров</a>
+      <a mat-list-item [routerLink]="['/main']">
+        <mat-icon class="upi-icon" color="primary">reply_all</mat-icon>
+        <span>Вернуться на главную страницу</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <mat-icon class="upi-icon">compare_arrows</mat-icon>
+      <span>Управление заказами</span>
+    </mat-toolbar>
+    <h3 mat-label class="flex-center-content">Товар, находящийся в корзине</h3>
+    <app-basket-table></app-basket-table>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

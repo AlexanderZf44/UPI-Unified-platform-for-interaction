@@ -49,13 +49,17 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import { ProductTableComponent } from './product-table/product-table.component';
+import { OrdersViewComponent } from './orders-view/orders-view.component';
+import { BasketTableComponent } from './basket-table/basket-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MainViewComponent,
-    ProductTableComponent
+    ProductTableComponent,
+    OrdersViewComponent,
+    BasketTableComponent
   ],
   imports: [
     BrowserModule,
