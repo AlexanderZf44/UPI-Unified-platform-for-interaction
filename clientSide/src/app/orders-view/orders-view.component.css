@@ -26,3 +26,12 @@
   align-items: center;
   justify-content: center;
 }
+
+.fab-button {
+  width: 80px;
+  height: 80px;
+  right: 20px;
+  margin-top: 20px;
+  left: auto;
+  position: absolute;
+}
