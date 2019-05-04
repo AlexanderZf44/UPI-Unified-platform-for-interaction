@@ -47,4 +47,12 @@ public interface ProductService {
      * @return DTO товара.
      */
     ProductDTO find(Long id);
+
+    /**
+     * Метод для нахождения списка товаров по их ID в системе.
+     *
+     * @param productIds список ID необходимых товаров.
+     * @return список DTO товаров.
+     */
+    List<ProductDTO> findAllByIds(List<Integer> productIds);
 }

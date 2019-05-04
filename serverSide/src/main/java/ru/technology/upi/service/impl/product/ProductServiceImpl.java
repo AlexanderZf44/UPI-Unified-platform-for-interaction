@@ -82,4 +82,19 @@ public class ProductServiceImpl implements ProductService {
     public ProductDTO find(Long id) {
         return null;
     }
+
+    /**
+     * Метод для нахождения списка товаров по их ID в системе.
+     *
+     * @param productIds список ID необходимых товаров.
+     * @return список DTO товаров.
+     */
+    @Override
+    public List<ProductDTO> findAllByIds(List<Integer> productIds) {
+        List<ProductEntity> dbProducts = repository.findAllById(productIds);
+
+        return dbProducts.stream()
+                .map(converter::convert)
+                .collect(Collectors.toList());
+    }
 }

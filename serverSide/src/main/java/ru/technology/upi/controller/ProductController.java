@@ -4,12 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.technology.upi.domain.dto.ProductDTO;
-import ru.technology.upi.domain.dto.UserDTO;
 import ru.technology.upi.service.api.product.ProductService;
 
-import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Контроллер, необходимый для взаимодейсвия с товарами платформы.
@@ -31,6 +28,17 @@ public class ProductController {
     @GetMapping(value = "/all")
     public List<ProductDTO> listOfProducts() {
         return productService.findAll();
+    }
+
+    /**
+     * Метод для нахождения списка товаров по их ID в системе.
+     *
+     * @param productIds список ID необходимых товаров.
+     * @return список DTO товаров.
+     */
+    @GetMapping(value = "/{productIds}")
+    public List<ProductDTO> findAllByIds(@PathVariable List<Integer> productIds) {
+        return productService.findAllByIds(productIds);
     }
 
     /**
